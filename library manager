@@ -1,0 +1,111 @@
+# Library Manager (Simple OOP Project)
+# Name: Mohsin Atta
+# Date: 20 Feb 2026
+# I learned how classes and objects work in Python
+
+# --------- Book Class ---------
+class Book:
+    def __init__(self, id, title, author):
+        self.id = id
+        self.title = title
+        self.author = author
+
+
+# --------- Member Class ---------
+class Member:
+    def __init__(self, id, name):
+        self.id = id
+        self.name = name
+        self.borrowed_books = []  # list of book ids
+
+
+# --------- Library Class ---------
+class Library:
+    def __init__(self):
+        self.books = {}     # store Book objects by id
+        self.members = {}   # store Member objects by id
+        self.loans = {}     # track borrowed books: book_id -> member_id
+
+    # Add a book
+    def add_book(self, book):
+        self.books[book.id] = book
+        print("Book added:", book.title)
+
+    # Add a member
+    def add_member(self, member):
+        self.members[member.id] = member
+        print("Member added:", member.name)
+
+    # Borrow a book
+    def borrow_book(self, book_id, member_id):
+        if book_id not in self.books:
+            print("Book not found")
+            return
+        if member_id not in self.members:
+            print("Member not found")
+            return
+        if book_id in self.loans:
+            print("Book already borrowed")
+            return
+
+        self.loans[book_id] = member_id
+        self.members[member_id].borrowed_books.append(book_id)
+        print("Book borrowed:", self.books[book_id].title)
+
+    # Return a book
+    def return_book(self, book_id):
+        if book_id not in self.loans:
+            print("Book was not borrowed")
+            return
+
+        member_id = self.loans[book_id]
+        self.members[member_id].borrowed_books.remove(book_id)
+        del self.loans[book_id]
+        print("Book returned:", self.books[book_id].title)
+
+    # Show available books
+    def show_books(self):
+        print("\nAvailable Books:")
+        for b_id, book in self.books.items():
+            if b_id not in self.loans:
+                print("-", book.title, "by", book.author)
+
+    # Show books borrowed by a member
+    def show_member_books(self, member_id):
+        if member_id not in self.members:
+            print("Member not found")
+            return
+
+        member = self.members[member_id]
+        print("\nBooks borrowed by", member.name)
+        for b_id in member.borrowed_books:
+            print("-", self.books[b_id].title)
+
+
+# --------- Main Program ---------
+lib = Library()
+
+# Add books
+lib.add_book(Book("B1", "Python Basics", "Ali"))
+lib.add_book(Book("B2", "OOP Guide", "Ahmed"))
+lib.add_book(Book("B3", "Coding Start", "Sara"))
+
+# Add members
+lib.add_member(Member("M1", "Ayesha"))
+lib.add_member(Member("M2", "Hassan"))
+
+# Borrow books
+lib.borrow_book("B1", "M1")
+lib.borrow_book("B2", "M1")
+
+# Show available books
+lib.show_books()
+
+# Show books of a member
+lib.show_member_books("M1")
+
+# Return a book
+lib.return_book("B1")
+
+# Show available books again
+lib.show_books()
