@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 
-# ------------------ CLASSES ------------------
+# CLASSES
 
 class Bill:
     def __init__(self, amount):
