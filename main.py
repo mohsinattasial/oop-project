@@ -21,7 +21,7 @@ class Flatmate:
 flatmates = []
 
 def add_flatmate():
-    name = name_entry.get()
+    name = name_entry.get().strip()
     days = days_entry.get()
 
     if name == "" or days == "":
@@ -32,6 +32,10 @@ def add_flatmate():
         days = float(days)
     except:
         messagebox.showerror("Error", "Days must be a number")
+        return
+
+    if not (0 < days < float("inf")):
+        messagebox.showerror("Error", "Days must be a positive finite number")
         return
 
     flatmates.append(Flatmate(name, days))
