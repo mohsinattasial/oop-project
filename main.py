@@ -30,7 +30,7 @@ def add_flatmate():
 
     try:
         days = float(days)
-    except:
+    except ValueError:
         messagebox.showerror("Error", "Days must be a number")
         return
 
@@ -54,7 +54,15 @@ def calculate_split():
         messagebox.showerror("Error", "Add at least one flatmate")
         return
 
-    bill = Bill(amount_entry.get())
+    try:
+        amount = float(amount_entry.get())
+    except ValueError:
+        messagebox.showerror("Error", "Bill amount must be a number")
+        return
+    if not (0 <= amount < float("inf")):
+        messagebox.showerror("Error", "Bill amount must be a non-negative finite number")
+        return
+    bill = Bill(amount)
     total_days = sum(f.days for f in flatmates)
 
     result_box.delete("1.0", tk.END)
