@@ -1,107 +1,19 @@
-Flatmates Bill Splitter (Tkinter GUI)
+# Flatmates Bill Splitter — Tkinter
 
-A simple and professional Python OOP + Tkinter GUI application that calculates and splits a bill among unlimited flatmates based on the number of days they stayed.
+Python desktop app to split a bill proportionally to days each flatmate stayed.
 
-This project demonstrates Object-Oriented Programming (OOP) concepts along with a clean graphical user interface.
-
-Features:
-
-Add unlimited flatmates
-
-Enter total bill amount
-
-Split bill based on number of days stayed
-
-Clean and user-friendly GUI
-
-Error handling for invalid inputs
-
-Reset button to clear all data
-
-OOP Concepts Used:
-
-Classes and Objects
-
-Encapsulation
-
-Methods
-
-Object Interaction
-
-Data Storage using Lists
-
-Technologies Used:
-
-Python 3
-
-Tkinter (for GUI)
-
-Project Structure:
-Flatmates_Bill_Splitter/
-├── main.py
-└── README.txt
-
-How to Run:
-
-Make sure Python 3 is installed.
-
-Download or clone the repository.
-
-Open terminal or command prompt.
-
-Run:
+## Run
+```bash
 python main.py
-The application window will open.
+```
 
-How It Works:
+Uses Python standard library and Tkinter.
 
-Enter the total bill amount.
+## Example
+For a Rs 6,000 bill with 30, 20 and 10 days, shares are Rs 3,000, Rs 2,000 and Rs 1,000 respectively.
 
-Enter flatmate name and number of days stayed.
+The application rejects invalid or negative bill amounts and non-positive stay durations. Calculated shares are rounded to two decimal places.
 
-Click "Add Flatmate".
+- `main.py`: main GUI and calculation classes.
 
-Repeat for all flatmates.
-
-Click "Calculate Split" to see results.
-
-Use "Reset" to clear all fields.
-
-Bill Calculation Formula:
-Individual Share = (Days Stayed / Total Days of All Flatmates) × Total Bill Amount
-
-Sample Example:
-Total Bill = 6000
-Ali stayed 30 days
-Ahmed stayed 20 days
-Sara stayed 10 days
-
-Total Days = 60
-
-Ali pays Rs 3000
-Ahmed pays Rs 2000
-Sara pays Rs 1000
-
-Purpose of the Project:
-
-Practice Object-Oriented Programming
-
-Build a real-world problem-solving application
-
-Understand GUI development using Tkinter
-
-Strengthen Python fundamentals
-
-Future Improvements:
-
-Equal split option
-
-Export bill as PDF
-
-Dark mode theme
-
-Save monthly history
-
-Email notification feature
-
-Author: Mohsin Atta
+Author: Mohsin Atta.
